@@ -12,10 +12,10 @@ export class AuthService {
     return !!this.sessionService.getUser();
   }
 
-  public authenticate(user: String, pass: String): void {
+  public authenticate(user: String, pass: String) {
     if (user === 'admin' && pass === 'pass') {
       this.signIn();
-    }
+    } else return false;
   }
 
   public signIn(): void {

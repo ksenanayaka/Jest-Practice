@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
+  hasError: boolean = false;
 
   form = this.formBuilder.group({
     username: ['', Validators.required],
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    this.authService.authenticate(this.form.get('username').value, this.form.get('password').value);
+    if (!this.authService.authenticate(this.form.get('username').value, this.form.get('password').value)) {
+      this.hasError = true;
+    }
   }
 }
