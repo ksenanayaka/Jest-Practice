@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CanActivateRoutesGuard } from './can-activate-routes.guard';
+import { CanActivateLoginRoutesGuard } from './can-activate-login-routes.guard';
 
 const routes: Routes = [
   {
@@ -14,11 +15,13 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [CanActivateLoginRoutesGuard]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [CanActivateLoginRoutesGuard]
   },
   {
     path: 'dashboard',
@@ -30,6 +33,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [CanActivateRoutesGuard]
+  providers: [CanActivateRoutesGuard, CanActivateLoginRoutesGuard]
 })
 export class AppRoutingModule {}
